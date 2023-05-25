@@ -32,7 +32,7 @@ class DocumentoInstrutor(models.Model):
     instituicao = models.CharField(max_length=50)
     data = models.DateField()
 
-class Funcionario(models.Model)
+class Funcionario(models.Model):
     nome = models.CharField(max_length=30)
     endereco = models.CharField(max_length=100)
-    idade = models.ImageField()
+    idade = models.IntegerField()
