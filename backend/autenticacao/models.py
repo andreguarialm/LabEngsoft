@@ -1,12 +1,9 @@
+from mailbox import NotEmptyError
 from sqlite3 import Cursor
 from django.db import models
 from .querysets import SocioQuerySet
 
 # Create your models here.
-class DocumentoInstrutor(models.Model):
-    curso = models.CharField(max_length=30)
-    instituicao = models.CharField(max_length=50)
-    data = models.DateField()
     
 class Socio(models.Model):
     nome = models.CharField(max_length=100)
@@ -29,3 +26,13 @@ class Socio(models.Model):
     @property
     def is_instrutor(self):
         return self.doc is not None
+
+class DocumentoInstrutor(models.Model):
+    curso = models.CharField(max_length=30)
+    instituicao = models.CharField(max_length=50)
+    data = models.DateField()
+
+class Funcionario(models.Model)
+    nome = models.CharField(max_length=30)
+    endereco = models.CharField(max_length=100)
+    idade = models.ImageField()
