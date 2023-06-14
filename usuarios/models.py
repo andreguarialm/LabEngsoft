@@ -4,12 +4,13 @@ from django.utils import timezone
 # Create your models here.
 
 class Socio(models.Model):
-    nome = models.CharField(max_length=200)
+    nome = models.CharField(max_length=200, default="")
+    sobrenome = models.CharField(max_length=200, default="")
     idade = models.IntegerField(default=0)
     endereço = models.CharField(max_length=400)
 
-    def __int__(self):
-        return self.pk
+    def __string__(self):
+        return f"{self.nome} {self.sobrenome}"
 
 class Documento(models.Model):
     socio = models.OneToOneField(Socio, on_delete=models.CASCADE, primary_key=True)
