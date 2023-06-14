@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'voos.apps.VoosConfig'
+    'voos.apps.VoosConfig',
     'usuarios.apps.UsuariosConfig'
 ]
 
