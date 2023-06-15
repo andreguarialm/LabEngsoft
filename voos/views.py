@@ -8,6 +8,11 @@ def index(request):
     return HttpResponse("You are at voos index")
 
 def voos(request, socio_id):
-    socio = get_object_or_404(Socio, id=socio_id)    
-    return render(request, "voos-socio.html", {"voos": socio.voos.order_by("-hora_saida"), "socio": socio})
-    
+    socio = get_object_or_404(Socio.objects.prefetch_related("voos__acompanhamento"), id=socio_id)
+    voos = socio.voos.order_by("-hora_saida")
+    ctx =  {
+        "voos": [(len(voos) - i, voo) for i, voo in enumerate(voos)], 
+        "socio": socio
+    }    
+    return render(request, "voos-socio.html", ctx)
+

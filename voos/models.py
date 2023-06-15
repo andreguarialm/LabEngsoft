@@ -18,10 +18,12 @@ class Voo(models.Model):
     hora_chegada = models.DateTimeField()
     hora_saida = models.DateTimeField()
     
+    def __str__(self):
+        return f"({self.socio}) {self.hora_saida} - {self.hora_chegada}"
+    
 class AcompanhamentoVoo(models.Model):
-    voo = models.OneToOneField("voos.Voo", on_delete=models.CASCADE)
+    voo = models.OneToOneField("voos.Voo", on_delete=models.CASCADE, related_name="acompanhamento")
     nota = models.FloatField()
     parecer = models.TextField(default="")
     instrutor = models.ForeignKey("usuarios.Socio", on_delete=models.CASCADE)
-    
-    
+

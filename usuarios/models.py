@@ -14,6 +14,7 @@ class Socio(models.Model):
     def __str__(self):
         return self.user.get_full_name()
     
+    
     @property
     def is_instrutor(self):
         return self.certificado_instrutor is not None

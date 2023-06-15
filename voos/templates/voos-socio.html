@@ -7,6 +7,17 @@
     <title>Voos/{{socio}}</title>
 </head>
 <body>
-    
+    <ul>
+        {% for index, voo in voos %}
+        Voo nro.: {{index}}
+        <li>
+            {{voo.hora_saida}}
+             - 
+            {{voo.hora_chegada}}
+            {{voo.acompanhamento.nota}}
+            <br>
+        </li>
+        {% endfor %}
+    </ul>
 </body>
 </html>
