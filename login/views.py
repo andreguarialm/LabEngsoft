@@ -7,5 +7,5 @@ def index(request):
     return HttpResponse("Teste login")
 
 def login(request):
-    return HttpResponse("Teste login")
+    return render(request, 'inicial/login.html')
 
