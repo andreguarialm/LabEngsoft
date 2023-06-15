@@ -1,5 +1,9 @@
 from django.contrib import admin
 from .models import Voo
-# Register your models here.
+from .forms import VooForm
 
-admin.site.register(Voo)
+@admin.register(Voo)
+class VooAdmin(admin.ModelAdmin):
+    form = VooForm
+    
+

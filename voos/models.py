@@ -14,15 +14,14 @@ from django.db import models
     
 
 class Voo(models.Model):
-    socio = models.OneToOneField("usuarios.Socio", on_delete=models.CASCADE)
-    data = models.DateField()
-    hora_chegada = models.TimeField()
-    hora_saida = models.TimeField()
+    socio = models.ForeignKey("usuarios.Socio", on_delete=models.CASCADE, related_name="voos")
+    hora_chegada = models.DateTimeField()
+    hora_saida = models.DateTimeField()
     
 class AcompanhamentoVoo(models.Model):
     voo = models.OneToOneField("voos.Voo", on_delete=models.CASCADE)
     nota = models.FloatField()
-    parecer = models.TextField()
+    parecer = models.TextField(default="")
     instrutor = models.ForeignKey("usuarios.Socio", on_delete=models.CASCADE)
     
     
