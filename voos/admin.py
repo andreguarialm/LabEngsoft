@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import VooPiloto
+from .models import Voo
 # Register your models here.
 
-admin.site.register(VooPiloto)
+admin.site.register(Voo)

@@ -1,11 +1,11 @@
 
 from django.shortcuts import render
 from django.http import HttpResponse
-from usuarios.models import Socio, Documento
+from usuarios.models import Socio, CertificadoIntrutor
 
 # Create your views here.
 
 def index(request):
     return HttpResponse("Usuarios.")
     return Socio.objects.all()
-    return Documento.objects.all()
+    return CertificadoIntrutor.objects.all()
