@@ -6,15 +6,13 @@ from django.conf import settings
 # Create your models here.
 
 class Socio(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default="")
-    nome = models.CharField(max_length=200, default="")
-    sobrenome = models.CharField(max_length=200, default="")
-    idade = models.IntegerField(default=0)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    idade = models.IntegerField()
     endereço = models.CharField(max_length=400)
     breve = models.CharField(max_length=20, default="", blank=True)  
 
     def __str__(self):
-        return f"{self.nome} {self.sobrenome}"
+        return self.user.get_full_name()
     
     @property
     def is_instrutor(self):
