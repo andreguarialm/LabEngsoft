@@ -8,5 +8,6 @@ urlpatterns = [
     path("usuarios/", include("usuarios.urls"), name ='usuarios'), 
     path("", include("inicial.urls"), name ='inicial'), 
     path('admin/', admin.site.urls, name ='admin'),
+    #path('accounts/', include("django.contrib.auth.urls"), name ='accounts'),
 
 ]
