@@ -6,7 +6,7 @@ from django.conf import settings
 # Create your models here.
 
 class Socio(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="socio")
     idade = models.IntegerField()
     endereço = models.CharField(max_length=400)
     breve = models.CharField(max_length=20, default="", blank=True)  
