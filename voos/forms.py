@@ -1,5 +1,5 @@
 from django import forms
-from .models import Voo
+from .models import Voo, AcompanhamentoVoo
 
 class VooForm(forms.ModelForm):
     class Meta:
@@ -11,4 +11,11 @@ class VooForm(forms.ModelForm):
         if data["hora_saida"] > data["hora_chegada"]:
             raise forms.ValidationError("Hora de saida precisa ser antes da hora de chegada")
         return data
+    
+class AcompanhamentoVooForm(forms.ModelForm):
+    class Meta:
+        model = AcompanhamentoVoo
+        fields = ["voo", "nota", "parecer"]
+
+    #instrutor = self.user.socio
     

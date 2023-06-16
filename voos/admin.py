@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import Voo
-from .forms import VooForm
+from .models import Voo, AcompanhamentoVoo
+from .forms import VooForm, AcompanhamentoVooForm
 
 @admin.register(Voo)
 class VooAdmin(admin.ModelAdmin):
@@ -9,5 +9,11 @@ class VooAdmin(admin.ModelAdmin):
     
     def acompanhado(self, obj):
         return obj.acompanhamento is not None
+
+@admin.register(AcompanhamentoVoo)
+class AcompanhamentoVooAdmin(admin.ModelAdmin):
+    form = AcompanhamentoVooForm
+    list_display = ("voo", "nota", "parecer")
+    
     
 
