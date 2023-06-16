@@ -1,13 +1,41 @@
 {% extends "inicial/base.html" %}
 {% block content %}
-    <article class="media content-section">
-        <div class="media-body">
-        <div class="article-metadata">
-            <a class="mr-2" href="#">Voos</a>
-            <small class="text-muted">Data</small>
-        </div>
-        <h2><a class="article-title" href="#">Voo</a></h2>
-        <p class="article-content">Detalhes</p>
-        </div>
-    </article>
+{% if socio != None%}
+<h2><a class="article-title">
+        Seus Voos
+</a></h2>
+{% else %}
+<h2><a class="article-link" href="/admin">
+    Site para funcionários
+</a></h2>
+{% endif %}
+    {% for index, voo in voos %}
+        <article class="media content-section">
+            <div class="media-body">
+            <div class="article-metadata">
+                <a class="mr-2" href="#">Voo numero: {{index}}</a>
+                <small class="text-muted">{{voo.hora_saida}} - {{voo.hora_chegada}}</small>
+            </div>
+            <h2><a class="article-title" href="#">
+                {% if socio.breve != "" %} 
+                    Voo solo
+                {% else %}
+                    Instrutor: {{voo.acompanhamento.instrutor.user.username}}
+                {% endif %}
+            </a></h2>
+            <!--p class="article-content">Duração: {{voo.duracao}}</p-->
+            </div>
+        </article>
+    {% endfor %}
 {% endblock content %}
+
+{% for index, voo in voos %}
+Voo nro.: {{index}}
+<li>
+    {{voo.hora_saida}}
+     - 
+    {{voo.hora_chegada}}
+    {{voo.acompanhamento.nota}}
+    <br>
+</li>
+{% endfor %}
