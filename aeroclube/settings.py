@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'voos.apps.VoosConfig',
     'inicial.apps.InicialConfig',
-    'usuarios.apps.UsuariosConfig'
+    'usuarios.apps.UsuariosConfig',
+    'crispy_forms',
+    'bootstrap4',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +129,5 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_REDIRECT_URL = '/'
