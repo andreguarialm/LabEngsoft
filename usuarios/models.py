@@ -17,7 +17,8 @@ class Socio(models.Model):
     
     @property
     def is_instrutor(self):
-        return self.certificado_instrutor is not None
+        #return self.certificado_instrutor is not None
+        return CertificadoIntrutor.objects.filter(socio=self).exists()
     
     @property
     def is_piloto(self):

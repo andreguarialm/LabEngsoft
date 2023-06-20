@@ -17,13 +17,16 @@
                 <small class="text-muted">{{voo.hora_saida}} - {{voo.hora_chegada}}</small>
             </div>
             <h2><a class="article-title" href="#">
-                {% if socio.breve != "" %} 
-                    Voo solo
+                {% if voo.acompanhamento.nota > -1 %} 
+                    Instrutor: {{voo.acompanhamento.instrutor.user.get_full_name}}
                 {% else %}
-                    Instrutor: {{voo.acompanhamento.instrutor.user.username}}
+                    Voo solo
                 {% endif %}
             </a></h2>
-            <!--p class="article-content">Duração: {{voo.duracao}}</p-->
+            <p class="article-content">Duração: {{voo.duracao}} </p>
+                {% if voo.acompanhamento.nota > -1 %} 
+                    <p class="article-content">Nota: {{voo.acompanhamento.nota}} </p>
+                {% endif %}
             </div>
         </article>
     {% endfor %}
