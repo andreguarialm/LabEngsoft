@@ -7,5 +7,5 @@ admin.site.register(CertificadoIntrutor)
 
 @admin.register(Socio)
 class SocioAdmin(admin.ModelAdmin):
-    list_display = ("id", "__str__")
+    list_display = ("id", "__str__", "classe", "breve")
     

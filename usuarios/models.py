@@ -1,8 +1,12 @@
 import datetime
 from django.db import models
 from django.utils import timezone
+from datetime import timedelta
 # from django.contrib.auth impor
 from django.conf import settings
+from voos.models import Voo, AcompanhamentoVoo
+from voos import models as voos_models
+from django.db.models import Sum
 # Create your models here.
 
 class Socio(models.Model):
@@ -27,6 +31,46 @@ class Socio(models.Model):
     @property
     def is_aluno(self):
         return self.breve == ""
+    
+    @property
+    def classe(self):
+        if self.is_aluno:
+            return "aluno"
+        elif self.is_instrutor:
+            return "instrutor"
+        elif self.is_piloto:
+            return "piloto"
+        else:
+            return ""
+        
+
+    
+    @property
+    def horas_de_voo_aluno(self):
+        horas = datetime.timedelta(seconds=0)
+        #print ("nota = " + str(v.acompanhamento.nota)) # o print faz o dado nao aparecer no html (why?????)
+        for v in self.voos.all():
+            if v.acompanhamento != None:
+                if v.acompanhamento.nota >= 5:
+                    horas += v.duracao  
+                #print(v.duracao)
+            #print(v.acompanhamento.nota >= 4)
+        #print(horas)
+        return horas
+    
+    @property
+    def pode_tirar_breve(self):
+        #print(self.horas_de_voo_aluno)
+        h = self.horas_de_voo_aluno
+        if  h > timedelta(1) and self.breve == "":
+            return True
+        else:
+            return False
+    
+    #@property
+    #def pode_tirar_breve(self):
+    #    return self.is_aluno and
+    
     
 
 class CertificadoIntrutor(models.Model):

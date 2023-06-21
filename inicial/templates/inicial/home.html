@@ -2,11 +2,20 @@
 {% block content %}
 {% if socio != None%}
 <h2><a class="article-title">
-        Seus Voos
+        Seus Voos 
 </a></h2>
-{% else %}
+    {% if socio.pode_tirar_breve%}
+    <a class="article-title">
+        Você pode tirar seu brevê de piloto! Entre em contato com um funcionário administrativo.
+    </a>
+    {% endif %}
+{% elif autenticado == True %}
 <h2><a class="article-link" href="/admin">
     Site para funcionários
+</a></h2>
+{% else %}
+<h2><a class="article-title">
+    Venha fazer parte do nosso aeroclube!
 </a></h2>
 {% endif %}
     {% for index, voo in voos %}
