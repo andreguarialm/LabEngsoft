@@ -4,7 +4,7 @@ from django.utils import timezone
 from datetime import timedelta
 # from django.contrib.auth impor
 from django.conf import settings
-from voos.models import Voo, AcompanhamentoVoo
+from voos.models import Voo 
 from voos import models as voos_models
 from django.db.models import Sum
 # Create your models here.
@@ -50,8 +50,8 @@ class Socio(models.Model):
         horas = datetime.timedelta(seconds=0)
         #print ("nota = " + str(v.acompanhamento.nota)) # o print faz o dado nao aparecer no html (why?????)
         for v in self.voos.all():
-            if v.acompanhamento != None:
-                if v.acompanhamento.nota >= 5:
+            if v.nota != None:
+                if v.nota >= 5:
                     horas += v.duracao  
                 #print(v.duracao)
             #print(v.acompanhamento.nota >= 4)

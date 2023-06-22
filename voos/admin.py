@@ -1,22 +1,22 @@
 from django.contrib import admin
-from .models import Voo, AcompanhamentoVoo
-from .forms import VooForm, AcompanhamentoVooForm
+from .models import Voo 
+from .forms import VooForm
 
 @admin.register(Voo)
 class VooAdmin(admin.ModelAdmin):
     form = VooForm
-    list_display = ("socio", "hora_saida", "hora_chegada", "acompanhado", "instrutor")
+    list_display = ("socio", "hora_saida", "hora_chegada", "instrutor", "nota", "parecer")
     
     def acompanhado(self, obj):
-        return obj.acompanhamento is not None
+        return (obj.instrutor and obj.nota) is not None
     
     def instrutor(self, obj):
-        return obj.acompanhamento.instrutor
+        return obj.instrutor
 
-@admin.register(AcompanhamentoVoo)
-class AcompanhamentoVooAdmin(admin.ModelAdmin):
-    form = AcompanhamentoVooForm
-    list_display = ("voo", "nota", "parecer", "instrutor")
+# @admin.register(AcompanhamentoVoo)
+# class AcompanhamentoVooAdmin(admin.ModelAdmin):
+#     form = AcompanhamentoVooForm
+#     list_display = ("voo", "nota", "parecer", "instrutor")
     
     
 
