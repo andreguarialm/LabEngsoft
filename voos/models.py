@@ -49,8 +49,14 @@ class Voo(models.Model):
     def duracao(self):
         return (self.hora_chegada - self.hora_saida) #.total_seconds()/3600
     
-
+    @property
+    def is_tracking(self):
+        if self.instrutor is None or self.nota is None:
+            return False
+        else:
+            return True
+        
     def save(self, *args, **kwargs):
-        if self.socio.classe == 'aluno' and (self.instrutor is None or self.nota is None ):
+        if self.socio.classe == 'aluno' and not self.is_tracking:
             raise PermissionDenied("Voos de alunos requerem um instrutor e uma nota.")
         super().save(*args, **kwargs)
