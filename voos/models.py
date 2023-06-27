@@ -37,7 +37,7 @@ class Voo(models.Model):
     hora_chegada = models.DateTimeField()
     hora_saida = models.DateTimeField()
 
-    nota = models.PositiveSmallIntegerField(null= True, blank= True)
+    nota = models.FloatField(null= True, blank= True)
     parecer = models.TextField(default="", blank= True)
     instrutor = models.ForeignKey("usuarios.Socio", on_delete=models.CASCADE, null= True, blank=True)
     
