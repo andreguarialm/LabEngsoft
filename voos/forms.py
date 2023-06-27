@@ -10,12 +10,16 @@ class VooForm(forms.ModelForm):
         data = super().clean()
         if data["hora_saida"] > data["hora_chegada"]:
             raise forms.ValidationError("Hora de saida precisa ser antes da hora de chegada")
-        # if data["socio"].is_aluno:
-        #     if data["instrutor"] is None:
-        #         raise forms.ValidationError("Escolha o nome do instrutor deste voo no campo apropriado")
-        #     if data["nota"] is None or data["nota"] > 10:
-        #         raise forms.ValidationError("A nota deve estar entre 0 e 10")
-        #     return data
+        if data["socio"].is_aluno:
+            if data["instrutor"] is None:
+                raise forms.ValidationError("Escolha o nome do instrutor deste voo no campo apropriado")
+            if not data["instrutor"].is_instrutor:
+                raise forms.ValidationError("Escolha um instrutor qualificado")
+            if data["nota"] is None or data["nota"] > 10:
+                raise forms.ValidationError("A nota deve estar entre 0 e 10")
+        elif data["instrutor"] is not None or data["nota"] is not None:
+            raise forms.ValidationError("Apenas alunos fazem voos acompanhados")
+        return data
     
 # class AcompanhamentoVooForm(forms.ModelForm):
 #     class Meta:

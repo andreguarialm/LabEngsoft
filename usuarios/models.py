@@ -35,11 +35,11 @@ class Socio(models.Model):
     @property
     def classe(self):
         if self.is_aluno:
-            return "aluno"
+            return "Aluno"
         elif self.is_instrutor:
-            return "instrutor"
+            return "Instrutor"
         elif self.is_piloto:
-            return "piloto"
+            return "Piloto"
         else:
             return ""
         
