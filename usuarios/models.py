@@ -51,7 +51,7 @@ class Socio(models.Model):
         #print ("nota = " + str(v.acompanhamento.nota)) # o print faz o dado nao aparecer no html (why?????)
         for v in self.voos.all():
             if v.nota != None:
-                if v.nota >= 5:
+                if v.nota >= 7.5:
                     horas += v.duracao  
                 #print(v.duracao)
             #print(v.acompanhamento.nota >= 4)
@@ -62,7 +62,7 @@ class Socio(models.Model):
     def pode_tirar_breve(self):
         #print(self.horas_de_voo_aluno)
         h = self.horas_de_voo_aluno
-        if  h > timedelta(1) and self.breve == "":
+        if  h > timedelta(5) and self.breve == "":
             return True
         else:
             return False
